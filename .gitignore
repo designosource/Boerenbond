@@ -10,7 +10,7 @@ sites/*/private
 nbproject
 
 # Ignore cache files
-sites/all/themes/childfocus/.sass-cache
+# sites/all/themes/childfocus/.sass-cache
 
 .DS_Store
 sites/.DS_Store
