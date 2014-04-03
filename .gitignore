@@ -1,0 +1,17 @@
+# Ignore configuration files that may contain sensitive information.
+sites/*/settings*.php
+
+# Ignore paths that contain user-generated content.
+sites/*/files
+sites/*/private
+
+# Ignore IDE files
+.idea
+nbproject
+
+# Ignore cache files
+sites/all/themes/childfocus/.sass-cache
+
+.DS_Store
+sites/.DS_Store
+sites/*/.DS_Store

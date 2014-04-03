@@ -1,0 +1,9 @@
+#header {
+  background-color: #70a883;
+  background-image: -moz-linear-gradient(top, #4d6649 0%, #70a883 100%);
+  background-image: -ms-linear-gradient(top, #4d6649 0%, #70a883 100%);
+  background-image: -o-linear-gradient(top, #4d6649 0%, #70a883 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #4d6649), color-stop(1, #70a883));
+  background-image: -webkit-linear-gradient(top, #4d6649 0%, #70a883 100%);
+  background-image: linear-gradient(top, #4d6649 0%, #70a883 100%);
+}
