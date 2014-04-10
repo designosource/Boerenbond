@@ -7,3 +7,12 @@
   background-image: -webkit-linear-gradient(top, #4d6649 0%, #70a883 100%);
   background-image: linear-gradient(top, #4d6649 0%, #70a883 100%);
 }
+/*
+input.form-autocomplete,input.form-text,input.form-file,textarea.form-textarea,select.form-select {
+  font-size: 14px;
+}
+.form-item-workbench-access select {
+	width: 45%;
+	height: 300px;
+}
+*/
