@@ -1,0 +1,32 @@
+project = "state_flow_entity"
+core = "7.x"
+name = State Flow Entity
+version = "7.x-3.x"
+description = The base for an entity workflow
+dependencies[] = state_machine
+dependencies[] = ctools
+package = "State Machine"
+
+; Core classes
+files[] = plugins/state_flow_entity.inc
+//files[] = state_flow.api.php
+
+; Tests
+//files[] = tests/state_flow.test
+
+; Views Handlers
+files[] = includes/views/state_flow_entity_handler_field_link.inc
+files[] = includes/views/state_flow_entity_handler_field_state.inc
+files[] = includes/views/state_flow_entity_handler_field_state_flow_states_history_list.inc
+files[] = includes/views/state_flow_entity_handler_field_state_flow_states.inc
+files[] = includes/views/state_flow_entity_handler_field_events.inc
+files[] = includes/views/state_flow_entity_handler_field_events_form.inc
+files[] = includes/views/state_flow_entity_handler_area_events_form.inc
+files[] = includes/views/state_flow_entity_handler_field_available_events.inc
+
+; Information added by  packaging script on 2013-11-07
+version = "7.x-3.x-dev"
+core = "7.x"
+project = "state_machine"
+datestamp = "1383847421"
+

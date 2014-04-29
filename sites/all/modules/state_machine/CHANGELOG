@@ -1,0 +1,23 @@
+7.x-3.x
+------------
+Create a revision history entity
+Implement new revision juggling based on ERS model
+Create entity agnostic state_flow_entity submodule
+Change state_flow module to rely on state_flow_entity
+Base parameters for the workflow are passed into init() instead of defined in init.
+
+7.x-2.x
+--------------
+Rename bulk revision alter keys to state_flow_node_revision_filters, state_flow_node_revision_operations
+#1479380: fix schedule to not use JS; use write_history()
+#1459360: drush command to publish scheduled nodes
+#1415692: state_flow_schedule to allow scheduling to publish
+Added state_flow_change_vid hook
+Added state_flow_event_fired hook
+Add more parameters to state_flow_invoke_event_handlers
+#1332530: event's title in the UI
+#1328684: drupal_alter in state_flow_load_state_machine instead of setting variable
+
+
+
+

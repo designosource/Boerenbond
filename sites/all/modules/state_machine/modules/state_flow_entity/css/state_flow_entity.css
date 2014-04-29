@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+
+
+.state-flow--is-published--yes td {
+  background-color: #aaffaa;
+}

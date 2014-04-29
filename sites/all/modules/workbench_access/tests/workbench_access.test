@@ -323,13 +323,13 @@ class WorkbenchAccessTaxonomyTestCase extends WorkbenchAccessTestCase {
     // Note that the field is nested as
     // $form['workbench_access']['workbench_access'], which forces FormAPI to
     // add the --2 suffix to the id.
-    $this->assertRaw('<select id="edit-workbench-access--2" name="workbench_access" class="form-select required custom_large_select_field">', t('Form presents a select list with no multiple select.'));
+    $this->assertRaw('<select id="edit-workbench-access--2" name="workbench_access" class="form-select required">', t('Form presents a select list with no multiple select.'));
     // Change some values and try again.
     variable_set('workbench_access_allow_multiple', 1);
     variable_set('workbench_access_label', 'TestWA');
     $this->drupalGet("node/$node->nid/edit");
     $this->assertRaw('TestWA', t('Workbench Access field was renamed.'));
-    $this->assertRaw('<select multiple="multiple" name="workbench_access[]" id="edit-workbench-access--2" class="form-select required custom_bb_form_select_field">', t('Form presents a select list with multiple select.'));
+    $this->assertRaw('<select multiple="multiple" name="workbench_access[]" id="edit-workbench-access--2" class="form-select required">', t('Form presents a select list with multiple select.'));
 
     // Try some form introspection.
     $form = $this->workbenchAccessNodeForm($account->uid, $node->type);
@@ -664,7 +664,7 @@ class WorkbenchAccessMenuTestCase extends WorkbenchAccessTestCase {
     variable_set('workbench_access_label', 'TestWA');
     $this->drupalGet("node/$node->nid/edit");
     $this->assertRaw('TestWA', t('Workbench Access field was renamed.'));
-    $this->assertRaw('<select multiple="multiple" name="workbench_access[]" id="edit-workbench-access--2" class="form-select required custom_bb_form_select_field">', t('Form presents a select list with multiple select.'));
+    $this->assertRaw('<select multiple="multiple" name="workbench_access[]" id="edit-workbench-access--2" class="form-select required">', t('Form presents a select list with multiple select.'));
 
     // Test module hooks.
     // Ensure that our node type uses the form element.

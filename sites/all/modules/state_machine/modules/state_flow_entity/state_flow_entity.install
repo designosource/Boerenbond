@@ -1,0 +1,196 @@
+<?php
+/**
+ * @file
+ * Install file for the State Flow module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function state_flow_entity_install() {
+  $result = db_update('system')
+      ->fields(array(
+        'weight' => 5,
+      ))
+      ->condition('name', 'state_flow_entity')
+      ->execute();
+}
+
+/**
+ * Implements hook_schema().
+ */
+function state_flow_entity_schema() {
+  $schema['state_flow_states'] = array(
+    'description' => 'Saves the current live revision_id of an entity.',
+    'fields' => array(
+      'state_flow_id' => array(
+        'description' => 'The primary identifier for this entry.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'hid' => array(
+        'description' => 'Joins to the state_flow_history table',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'entity_type' => array(
+        'description' => 'The type of the entity to schedule; e.g. node, user.',
+        'type' => 'varchar',
+        'length' => 255,
+      ),
+      'entity_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'default' => 0
+      ),
+      'revision_id' => array(
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'default' => 0
+      ),
+      'state' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE
+      ),
+      'active' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0
+      ),
+      'timestamp' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null', TRUE,
+        'default' => 0
+      ),
+    ),
+    'primary key' => array('state_flow_id'),
+    'indexes' => array(
+      'entity' => array('entity_type', 'entity_id'),
+      'revision' => array('entity_id', 'revision_id')
+    ),
+  );
+
+  $schema['state_flow_history'] = array(
+    'description' => 'Saves the state history of entity revisions.',
+    'fields' => array(
+      'hid' => array(
+        'description' => 'The primary identifier for history.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'entity_type' => array(
+        'description' => 'The type of the entity to schedule; e.g. node, user.',
+        'type' => 'varchar',
+        'length' => 255,
+      ),
+      'entity_id' => array(
+        'description' => 'The id of the entity to state change',
+        'type' => 'int',
+        'unsigned' => TRUE,
+      ),
+      'revision_id' => array(
+        'description' => 'The revision id of the entity whose state changes',
+        'type' => 'int',
+        'unsigned' => TRUE,
+      ),
+      'state' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE
+      ),
+      'from_state' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE
+      ),
+      'timestamp' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null', TRUE,
+        'default' => 0
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0
+      ),
+      'log' => array(
+        'type' => 'text',
+        'not null' => FALSE,
+        'size' => 'big'
+      ),
+
+      // @todo, do we need to record event name, origin_state or workflow/plugin name?
+/*
+      'highest_hid_for_this_vid' => array(
+        'description' => 'A boolean that serves as a replacement for state_flow_states.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 1,
+      ),
+
+      'do_i_care_about_this_vid_still' => array(
+        'description' => 'A boolean for whether this vid is still "relevant" where "relevant" varies on the site. LSD Context matters here.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 1,
+      ),
+
+ */
+    ),
+
+    'primary key' => array('hid'),
+    'indexes' => array(
+      'entity_id' => array('entity_id'),
+      'revision_id' => array('revision_id'),
+    ),
+  );
+
+  return $schema;
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Create a new node_revision_states_history table to track state changes. Also,
+ * add an index for 'nid' to the node_revision_states table.
+ */
+function state_flow_entity_update_7001() {
+  $new_table = drupal_get_schema_unprocessed('state_flow', 'node_revision_states_history');
+  db_create_table('node_revision_states_history', $new_table);
+  db_add_index('node_revision_states', 'nid', array('nid'));
+  return st('Created a new {node_revision_states_history} table.');
+}
+
+/**
+ * Add a from_state column to state_flow_history.
+ */
+function state_flow_entity_update_7002() {
+
+  // Clear the cache of the schema so that there's no risk in the logic below.
+  drupal_get_complete_schema(TRUE);
+
+  // Confirm that the field doesn't exist yet.
+  if (!db_field_exists("state_flow_history", 'from_state')) {
+    $field = array(
+      'type' => 'varchar',
+      'length' => '255',
+      'not null' => FALSE
+    );
+    db_add_field("state_flow_history", 'from_state', $field);
+    // need to rebuild schema to make column available.
+    drupal_get_complete_schema(TRUE);
+
+    return st('Added the from_state column to {state_flow_history}');
+  }
+  else {
+    return st('The from_state column already existed in {state_flow_history}');
+  }
+}
