@@ -6,6 +6,7 @@ stylesheets[screen][] = css/style.css
 stylesheets[screen][] = css/responsive.css
 scripts[] = js/jRespond.js
 scripts[] = js/adminimal_theme.js
+
 settings[shortcut_module_link] = 1
 settings[display_icons_config] = 1
 regions[content_before] = Before Content

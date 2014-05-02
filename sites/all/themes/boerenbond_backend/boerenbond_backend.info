@@ -1,14 +1,16 @@
 name = boerenbond_backend
 description = A sub theme for the backend, based off Adminimal, with boerenbond style added to it.
+version = VERSION
 package = Core
 core = 7.x
 base theme = adminimal
-
 stylesheets[all][] = css/main.css
 
 settings[shortcut_module_link] = 1
 settings[display_icons_config] = 1
+regions[content_before] = Before Content
 regions[content] = Content
+regions[content_after] = After Content
 regions[help] = Help
 regions[page_top] = Page top
 regions[page_bottom] = Page bottom
