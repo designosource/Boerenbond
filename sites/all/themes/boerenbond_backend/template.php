@@ -5,8 +5,6 @@
  *
  * Forcing new reversion and publishing.
  */
-// function hook_form_BASE_FORM_ID_alter()(&$form, $form_state) {
-
 function workbench_moderation_form_node_form_alter(&$form, $form_state) {
   $content_type = $form['#node']->type;
   if($content_type == 'publicatiefiche') {
@@ -69,11 +67,11 @@ function workbench_moderation_form_node_form_alter(&$form, $form_state) {
     // Move the revision log into the publishing options to make things pretty.
     if ($form['options']['#access']) {
       $form['options']['log'] = $form['revision_information']['log'];
-      $form['options']['log']['#title'] = t('Moderation notes');    
-      // $form['options']['workbench_moderation_state_new'] = $form['revision_information']['workbench_moderation_state_new'];
+      $form['options']['log']['#title'] = t('Moderation notes'); 
       /*
        * Patch start for unknown 'workbench_moderation_state_new'
       */
+      // $form['options']['workbench_moderation_state_new'] = $form['revision_information']['workbench_moderation_state_new'];
       $form['options']['workbench_moderation_state_new'] = isset($form['revision_information']['workbench_moderation_state_new']) ? $form['revision_information']['workbench_moderation_state_new'] : '';
       /*
        * Patch end for unknown 'workbench_moderation_state_new'
@@ -96,3 +94,15 @@ function workbench_moderation_form_node_form_alter(&$form, $form_state) {
     workbench_moderation_messages('edit', $form['#node']);
   }
 }
+/**
+ * Implements hook_form_alter().
+ * boerenbond_backend_form_alter().
+ *
+ * Remove 'Sticky at top of list' & 'Promote to front' check boxes
+ */
+function boerenbond_backend_form_alter(&$form, &$form_state, $form_id) { 
+  if (strpos($form_id, '_node_form') !== FALSE) { 
+    unset($form['options']['sticky']); 
+    unset($form['options']['promote']); 
+  } 
+} 

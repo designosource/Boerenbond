@@ -291,7 +291,7 @@ function hierarchical_select_ajax($form, $form_state) {
     return array('#type' => 'ajax', '#commands' => $commands);
   }
 
-  list($form, $form_state) = ajax_get_form();
+  list($form, $form_state, $form_id, $form_build_id, $commands) = ajax_get_form();
 
   if (!$form) {
     // Invalid form_build_id.
@@ -327,7 +327,6 @@ function hierarchical_select_ajax($form, $form_state) {
   $output = theme('status_messages') . drupal_render($form);
 
   // Send AJAX command to update the Hierarchical Select.
-  $commands = array();
   $commands[] = array(
       'command' => 'hierarchicalSelectUpdate', 
       'output'  => $output, 

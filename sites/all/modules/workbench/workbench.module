@@ -10,7 +10,6 @@
  */
 function workbench_menu() {
   $items = array();
-
   $items['admin/config/workbench'] = array(
     'title' => 'Workbench',
     'description' => 'Workbench',

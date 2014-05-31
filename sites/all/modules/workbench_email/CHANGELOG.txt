@@ -1,3 +1,31 @@
+Workbench Email 7.x-3.2, 2014-05-07
+-----------------------------------
+by teknic: Issue 2260279: Fixed issue with non array being passed into sql
+
+Workbench Email 7.x-3.1, 2014-04-29
+-----------------------------------
+by teknic: Issue 2253911: Queue Mail value not being loaded on Config Form
+by teknic: Issue 2253907: Email notification reports failure despite being added to queue
+by teknic: Spelling issue with admin form.
+
+Workbench Email 7.x-3.0, 2014-04-28
+-----------------------------------
+by teknic: Implemented hook_requirements().
+by teknic: Integrate with Workbench Access.
+by teknic: Fix error messages on sending.
+by teknic: Update features export to export new variables.
+by teknic: Add auto notify setting to fire email when state
+           transition occurs.
+by teknic: Add setting for author based notification.
+by teknic: Rework admin pages, create one section called email,
+           define email transitions, ajax submit, inject emails section
+           (ajax form).
+by teknic: Remove rid from being exported in feature.
+by teknic: Added a drupal_alter to gain access to the element
+by teknic: Added an all users option inside the select list, allowing
+           for mass email within the role.
+by teknic: Implemented batch emailing
+
 Workbench Email 7.x-2.1, 2013-01-05
 -----------------------------------
 by teknic: Issue #1880238: fixed issue with null constraint on

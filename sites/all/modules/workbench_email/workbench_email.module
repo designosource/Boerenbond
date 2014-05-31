@@ -849,6 +849,11 @@ function workbench_email_filter_workbench_access_users($rid, $accounts, $editors
  *   The available sections.
  */
 function workbench_email_scheme_taxonomy_get_parents($sections) {
+  if (!is_array($sections)) {
+    $value = $sections;
+    $sections = array();
+    $sections[] = $value;
+  }
   $terms = taxonomy_term_load_multiple($sections);
 
   // Get all parents.
