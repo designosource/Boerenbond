@@ -4,10 +4,13 @@ version = VERSION
 package = Core
 core = 7.x
 base theme = adminimal
+
 stylesheets[all][] = css/main.css
+scripts[] = js/custom_main.js
 
 settings[shortcut_module_link] = 1
 settings[display_icons_config] = 1
+
 regions[content_before] = Before Content
 regions[content] = Content
 regions[content_after] = After Content

@@ -98,11 +98,17 @@ function workbench_moderation_form_node_form_alter(&$form, $form_state) {
  * Implements hook_form_alter().
  * boerenbond_backend_form_alter().
  *
- * Remove 'Sticky at top of list' & 'Promote to front' check boxes
+ * Remove 'Sticky at top of list' & 'Promote to front' check boxes and change the weights of the tab items
  */
 function boerenbond_backend_form_alter(&$form, &$form_state, $form_id) { 
+  // Get form id and check when to apply changes
   if (strpos($form_id, '_node_form') !== FALSE) { 
+    // Unset the two redundant options for nodes
     unset($form['options']['sticky']); 
-    unset($form['options']['promote']); 
+    unset($form['options']['promote']);
+    // Change the weigt of the "publishing options" tab so it comes first
+    $form['options']['#weight'] = -999999999;
   } 
-} 
+}
+
+

@@ -5,3 +5,8 @@ form input, form select {
   font-size: 14px; }
 form textarea {
   font-size: 16px; }
+
+div.admin.my-workbench .left {
+  width: 20%; }
+div.admin.my-workbench .right {
+  width: 80%; }
