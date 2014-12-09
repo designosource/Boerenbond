@@ -15,3 +15,6 @@ nbproject
 .DS_Store
 sites/.DS_Store
 sites/*/.DS_Store
+
+# Ignore the tmp folder
+tmp/*
