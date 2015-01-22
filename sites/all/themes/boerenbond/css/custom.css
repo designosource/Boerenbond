@@ -9,6 +9,12 @@
   background-image: linear-gradient(top, #4d6649 0%, #70a883 100%);
 }
 
+subtitel
+{
+  font-weight: bold;
+  display: block;
+}
+
 
 /*
 input.form-autocomplete,input.form-text,input.form-file,textarea.form-textarea,select.form-select {

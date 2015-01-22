@@ -28,10 +28,27 @@
  * @see template_process()
  */
 ?>
-<div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <div class="content"<?php print $content_attributes; ?>>
-    <?php
-      print render($content);
-    ?>
-  </div>
-</div>
+      	
+<?php
+
+if (!empty($content['field_subtitel'])) {
+	      	print '<subtitel>';
+	      	print render($content['field_subtitel']);
+	      	print '</subtitel>';
+			print '<tekst>';
+			print render($content['field_tekst']);
+			print '</tekst>';
+}
+
+if (!empty($content['field_foto_artikel'])) {
+	      	print '<foto_artikel>';
+	      	print render($content['field_foto_artikel']);
+	      	print '</foto_artikel>';
+			print '<onderschrift_artikel>';
+			print render($content['field_onderschrift_artikel']);
+			print '</onderschrift_artikel>';
+}
+
+
+?>
+
