@@ -109,7 +109,7 @@
       counter.removeClass(options.cssExceeded);
     }
 
-    counter.html(options.counterText.replace('@limit', limit).replace('@remaining', available));
+    counter.html(options.counterText.replace('@limit', limit).replace('@remaining', available).replace('@count', count));
   };
 
   /**

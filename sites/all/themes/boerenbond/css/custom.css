@@ -15,6 +15,7 @@ subtitel
   display: block;
 }
 
+.ajax-progress-throbber { display: none}
 
 /*
 input.form-autocomplete,input.form-text,input.form-file,textarea.form-textarea,select.form-select {
